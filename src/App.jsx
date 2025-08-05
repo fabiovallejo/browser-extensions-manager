@@ -1,9 +1,26 @@
 import './global.css'
 import NavBar from './components/navbar';
 import ExtensionCard from './components/ExtensionCard';
-import extensiones from '../data.json';
+import extensionesData from '../data.json';
+import { useState } from 'react';
 
 function App() {
+  const [extensiones, setExtensiones] = useState(extensionesData);
+  const [filtro, setFiltro] = useState("all");
+
+  const extensionesFiltradas = extensiones.filter(ext => {
+    if (filtro === "all") return true;
+    if (filtro === "active") return ext.isActive;
+    if (filtro === "inactive") return !ext.isActive;
+  })
+
+  const handleToggle = (name) => {
+    setExtensiones(prev =>
+      prev.map(ext =>
+        ext.name === name ? { ...ext, isActive: !ext.isActive } : ext
+      )
+    );
+  };
 
   return (
   <div className="bg-[linear-gradient(180deg,_#040918_0%,_#091540_100%)] min-h-screen text-white pt-10">
@@ -11,14 +28,23 @@ function App() {
     <div className='px-65 flex items-center justify-between'>
       <h1 className='text-[35px] font-[600]'>Extensions List</h1>
       <div className='flex space-x-6'>
-        <button className='bg-[#2F354B] py-2 px-5 rounded-[25px] border-white/15 border-[1px]'>All</button>
-        <button className='bg-[#2F354B] py-2 px-5 rounded-[25px] border-white/15 border-[1px]' >Active</button>
-        <button className='bg-[#2F354B] py-2 px-5 rounded-[25px] border-white/15 border-[1px]'>Inactive</button>
+        <button className={`${filtro === "all" ? "bg-[#F35B55]" : "bg-[#2F354B]" } py-2 px-5 rounded-[25px] border-white/15 border-[1px] cursor-pointer`} onClick={() => setFiltro("all")}>All</button>
+        <button className={`${filtro === "active" ? "bg-[#F35B55]" : "bg-[#2F354B]" } py-2 px-5 rounded-[25px] border-white/15 border-[1px] cursor-pointer`} onClick={() => setFiltro("active")} >Active</button>
+        <button className={`${filtro === "inactive" ? "bg-[#F35B55]" : "bg-[#2F354B]" } py-2 px-5 rounded-[25px] border-white/15 border-[1px] cursor-pointer`} onClick={() => setFiltro("inactive")}>Inactive</button>
       </div>
     </div>
     <div className='px-63 pt-8 grid grid-cols-3'>
-      {extensiones.map((ext) => (
-        <ExtensionCard logo={ext.logo} name={ext.name} description={ext.description} isActive={ext.isActive}/>
+      {extensionesFiltradas.map((ext) => (
+        <ExtensionCard 
+        logo={ext.logo} 
+        name={ext.name} 
+        description={ext.description} 
+        isActive={ext.isActive}
+        onRemove={() => {
+          setExtensiones(prev => prev.filter(e => e.name !== ext.name));
+        }}
+        onToggle={() => handleToggle(ext.name)}
+        />
       ))}
     </div>
 
