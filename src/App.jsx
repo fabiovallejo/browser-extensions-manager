@@ -7,6 +7,7 @@ import { useState } from 'react';
 function App() {
   const [extensiones, setExtensiones] = useState(extensionesData);
   const [filtro, setFiltro] = useState("all");
+  const [IsDarkTheme, setIsDarkTheme] = useState(true);
 
   const extensionesFiltradas = extensiones.filter(ext => {
     if (filtro === "all") return true;
@@ -22,15 +23,29 @@ function App() {
     );
   };
 
+  const handleTheme = () => {
+    setIsDarkTheme(!IsDarkTheme);
+  };
+
+  const getButtonClasses = (type) => {
+    const isSelected = filtro === type;
+
+    if(IsDarkTheme){
+       return isSelected ? "bg-[#F35B55] text-[#1F153F] font-[500] border-white/15" : "bg-[#2F354B] text-white border-white/15";
+    } else {
+      return isSelected ? "bg-[#C62418] text-white font-[500] border-black/15" : "bg-[#FBFEFF] text-[#0C1645] border-black/15";
+    }
+  }
+
   return (
-  <div className="bg-[linear-gradient(180deg,_#040918_0%,_#091540_100%)] min-h-screen text-white pt-10">
-    <NavBar />
+  <div className={`${IsDarkTheme === true ? "bg-[linear-gradient(180deg,_#040918_0%,_#091540_100%)] text-white" : "bg-[linear-gradient(180deg,_#EBF2FC_0%,_#EEF8F9_100%)] text-[#0C1645]" } min-h-screen pt-10`}>
+    <NavBar onTheme={handleTheme} darkTheme={IsDarkTheme} />
     <div className='px-65 flex items-center justify-between'>
-      <h1 className='text-[35px] font-[600]'>Extensions List</h1>
+      <h1 className='text-[35px] font-[700]'>Extensions List</h1>
       <div className='flex space-x-6'>
-        <button className={`${filtro === "all" ? "bg-[#F35B55]" : "bg-[#2F354B]" } py-2 px-5 rounded-[25px] border-white/15 border-[1px] cursor-pointer`} onClick={() => setFiltro("all")}>All</button>
-        <button className={`${filtro === "active" ? "bg-[#F35B55]" : "bg-[#2F354B]" } py-2 px-5 rounded-[25px] border-white/15 border-[1px] cursor-pointer`} onClick={() => setFiltro("active")} >Active</button>
-        <button className={`${filtro === "inactive" ? "bg-[#F35B55]" : "bg-[#2F354B]" } py-2 px-5 rounded-[25px] border-white/15 border-[1px] cursor-pointer`} onClick={() => setFiltro("inactive")}>Inactive</button>
+        <button className={`${getButtonClasses("all")} py-2 px-5 rounded-[25px] border-[1px] cursor-pointer text-[18px]`} onClick={() => setFiltro("all")}>All</button>
+        <button className={`${getButtonClasses("active")} py-2 px-5 rounded-[25px] border-[1px] cursor-pointer text-[18px]`} onClick={() => setFiltro("active")} >Active</button>
+        <button className={`${getButtonClasses("inactive")} py-2 px-5 rounded-[25px] border-[1px] cursor-pointer text-[18px]`} onClick={() => setFiltro("inactive")}>Inactive</button>
       </div>
     </div>
     <div className='px-63 pt-8 grid grid-cols-3'>
@@ -44,6 +59,7 @@ function App() {
           setExtensiones(prev => prev.filter(e => e.name !== ext.name));
         }}
         onToggle={() => handleToggle(ext.name)}
+        darkTheme={IsDarkTheme}
         />
       ))}
     </div>

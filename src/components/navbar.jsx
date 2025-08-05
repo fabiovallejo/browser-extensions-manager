@@ -1,12 +1,12 @@
 import Logo from "../assets/logo.svg?react";
 
-export default function Navbar() {
+export default function Navbar({ onTheme, darkTheme }) {
     return (
-        <nav className="text-white bg-[#1F2535] mx-65 mb-20 p-5 flex rounded-[25px] justify-between items-center">
+        <nav className={` ${darkTheme === true ? "bg-[#1F2535] text-white" : "bg-[#FCFDFF]"} mx-65 mb-20 p-5 flex rounded-[25px] justify-between items-center`}>
             <Logo className="w-50" />
-            <div className="bg-[#2F354B] p-4 rounded-[15px]">
-                <img src="../../public/images/sun.svg" alt="" />
-            </div>
+            <button className={`${darkTheme === true ? "bg-[#2F354B]" : "bg-[#EEEEEE]" }  p-4 rounded-[15px] cursor-pointer`} onClick={onTheme}>
+                <img src={` ${darkTheme === true ? "../../public/images/sun.svg" : "../../public/images/icon-moon.svg" }`} alt="" />
+            </button>
         </nav>
     );
 }
