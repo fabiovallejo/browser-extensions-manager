@@ -17,13 +17,12 @@ Users should be able to:
 
 ### Screenshots
 
-./extensionsmanagerdark.jpg
-./extensionsmanagerlight.jpg
+![Dark Mode](./extensionsmanagerdark.png "Browser Extensions Manager Dark")
+![Light Mode](./extensionsmanagerlight.png "Browser Extensions Manager Light")
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://browser-extensions-manager-lake.vercel.app/](https://browser-extensions-manager-lake.vercel.app/)
 
 ## My process
 
