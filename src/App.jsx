@@ -23,7 +23,7 @@ function App() {
     </div>
 
 
-    <div className="attribution">
+    <div className="attribution pt-10 pb-5 text-center">
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
       Coded by <a href="#">Fabio Vallejo</a>.
     </div>
