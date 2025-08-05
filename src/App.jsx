@@ -38,9 +38,9 @@ function App() {
   }
 
   return (
-  <div className={`${IsDarkTheme === true ? "bg-[linear-gradient(180deg,_#040918_0%,_#091540_100%)] text-white" : "bg-[linear-gradient(180deg,_#EBF2FC_0%,_#EEF8F9_100%)] text-[#0C1645]" } min-h-screen pt-10 px-12 sm:px-20 md:px-30 xl:px-50 2xl:px-65`}>
+  <div className={`${IsDarkTheme === true ? "bg-[linear-gradient(180deg,_#040918_0%,_#091540_100%)] text-white" : "bg-[linear-gradient(180deg,_#EBF2FC_0%,_#EEF8F9_100%)] text-[#0C1645]" } min-h-screen pt-10 px-7 sm:px-20 md:px-30 xl:px-50 2xl:px-65`}>
     <NavBar onTheme={handleTheme} darkTheme={IsDarkTheme} />
-    <div className=' flex lg:flex-row flex-col space-y-4 items-center justify-between px-2 text-center'>
+    <div className=' flex lg:flex-row flex-col space-y-3 items-center justify-between px-2 text-center'>
       <h1 className='text-[25px] lg:text-[35px] font-[700]'>Extensions List</h1>
       <div className='flex space-x-3 lg:space-x-6'>
         <button className={`${getButtonClasses("all")} py-2 px-5 rounded-[25px] border-[1px] cursor-pointer text-[15px] lg:text-[18px]`} onClick={() => setFiltro("all")}>All</button>
