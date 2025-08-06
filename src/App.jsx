@@ -31,9 +31,13 @@ function App() {
     const isSelected = filtro === type;
 
     if(IsDarkTheme){
-       return isSelected ? "bg-[#F35B55] text-[#1F153F] font-[500] border-white/15" : "bg-[#2F354B] text-white border-white/15";
+       return isSelected 
+       ? "bg-[#F35B55] text-[#1F153F] font-[500] border-white/15 focus:outline-offset-1 focus:border-[#040A1C] focus:outline-[#D4686C] focus:outline-2 hover:bg-[#DE4B42] transition-all duration-200" 
+       : "bg-[#2F354B] text-white border-white/15 focus:bg-[#525868] focus:outline-offset-1 focus:border-[#040A1C] focus:outline-[#D4686C] focus:outline-2 hover:bg-[#525868] transition-all duration-200";
     } else {
-      return isSelected ? "bg-[#C62418] text-white font-[500] border-black/15" : "bg-[#FBFEFF] text-[#0C1645] border-black/15";
+      return isSelected 
+        ? "bg-[#C62418] text-white font-[500] border-black/15 focus:outline-offset-1 focus:border-[#ECF4FB] focus:outline-[#CA241B] focus:outline-2 hover:bg-[#DD493F] transition-all duration-200" 
+        : "bg-[#FBFEFF] text-[#0C1645] border-black/15 focus:bg-[#FCFDFF] focus:outline-offset-1 focus:border-[#ECF4FB] focus:outline-[#CA241B] focus:outline-2 hover:bg-[#F6FAFD] transition-all duration-200";
     }
   }
 
@@ -64,11 +68,10 @@ function App() {
       ))}
     </div>
 
-
-    <div className="attribution pt-10 pb-5 text-center">
+    <footer className="attribution pt-10 pb-5 text-center">
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
       Coded by <a href="#">Fabio Vallejo</a>.
-    </div>
+    </footer>
   </div>
   );
 }
